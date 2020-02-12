@@ -105,12 +105,12 @@ $test = Open-IqsSession -Login "test1@somewhere.com" -Password "mypassword"
     process 
     {
         $route = "/api/v1/signin"
-        $params = @{
+        $Request = @{
             login = $Login
             password = $Password
         }
 
-        $session = Invoke-PipFacade -Connection $Connection -Method "Get" -Route $route -Params $params
+        $session = Invoke-PipFacade -Connection $Connection -Method "POST" -Route $route -Request $Request
 
         $Connection = if ($Connection -eq $null) { Get-PipConnection } else {$Connection}
         if ($Connection -ne $null) {
